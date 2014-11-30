@@ -14,7 +14,7 @@ import com.google.api.client.util.Joiner;
 import com.google.api.client.util.Lists;
 
 /**
- * 사용자의 Credential을 저장하고 관리하기 위한 Authorization Code Flow
+ * 
  * @author Garden
  */
 public class AuthorizationCodeFlow {
