@@ -33,6 +33,7 @@ import com.google.api.client.util.Lists;
  * @version 1.0
  * 
  * */
+@Deprecated
 public class Credential implements HttpExecuteInterceptor,
 														HttpRequestInitializer, 
 														HttpUnsuccessfulResponseHandler{

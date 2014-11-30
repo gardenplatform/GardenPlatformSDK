@@ -19,6 +19,7 @@ import com.google.api.client.util.Preconditions;
  * @version 1.0
  * 
  * */
+@Deprecated
 public class RefreshTokenRequest extends TokenRequest{
 
 	@Key("refresh_token")

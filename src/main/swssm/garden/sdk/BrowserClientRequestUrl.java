@@ -2,6 +2,8 @@ package swssm.garden.sdk;
 
 import java.util.Collection;
 
+
+@Deprecated
 public class BrowserClientRequestUrl  extends AuthorizationRequestUrl{
 
 	@Override

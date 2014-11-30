@@ -14,6 +14,8 @@ import com.google.api.client.util.store.DataStoreFactory;
  * @author Garden
  *
  */
+
+@Deprecated
 public final class DataStoreCredentialRefreshListener implements CredentialRefreshListener{
 
 	/**

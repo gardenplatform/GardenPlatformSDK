@@ -14,6 +14,7 @@ import com.google.api.client.http.HttpRequest;
  * @version 1.0
  * 
  */
+@Deprecated
 public class BearerToken {
 	
 	/** Query를 보내기 위한 파라미터 이름 */

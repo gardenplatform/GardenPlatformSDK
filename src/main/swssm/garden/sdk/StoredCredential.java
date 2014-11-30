@@ -15,10 +15,12 @@ import com.google.api.client.util.store.DataStoreFactory;
  * access token과 refresh token을 저장하여 한번 Authorize되면 Authorization Page로 
  * 가지 않게 하기 위해 Credential 정보를 저장하기 위한 클래스
  * 
- *  @author SW
+ *  @author Garden
  *  @version 1.0
  * 
  * */
+
+@Deprecated
 public class StoredCredential implements Serializable{
 
 	private static final long serialVersionUID = 1L;

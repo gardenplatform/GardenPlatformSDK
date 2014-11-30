@@ -11,6 +11,8 @@ import java.io.IOException;
  * @version 1.0
  * 
  * */
+
+@Deprecated
 public interface CredentialRefreshListener {
 
 	
