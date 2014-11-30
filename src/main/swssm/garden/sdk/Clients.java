@@ -53,9 +53,13 @@ public class Clients {
 		
 	}
 	
+//	https://graph.facebook.com/v2.2/me 
 	public Profile getClients() throws IOException{
-		request = requestFactory.buildGetRequest(new GenericUrl("https://graph.facebook.com/v2.2/me"));
+		
+		
+		request = requestFactory.buildGetRequest(new GenericUrl("http://211.189.127.73:8000/api/v1/me?format=json"));
 		request.setParser(new JsonObjectParser(new JacksonFactory()));
+//		request.set
 		request.getHeaders().setAuthorization(HEADER_PREFIX +' '+ accessToken);
 		HttpResponse response = request.execute();
 		Profile  profile = response.parseAs(Profile.class);
@@ -75,25 +79,48 @@ public class Clients {
 
 	public static class Profile extends GenericJson {
 	  /** Profile id */
+	  @Key("username")
+	  private String userId;
 	  @Key
-	  private String name;
+	  private String gender;
+	  @Key("real_name")
+	  private String realName;
+	  @Key("phone")
+	  private String phoneNumber;
+	  @Key("profile_img")
+	  private String profileImg;
+	  @Key("class_num")
+	  private String classNum;
 	  @Key
-	  private String bio;
-	  @Key("first_name")
-	  private String firstName;
+	  private String email;
 	  
+	  public String getUserId(){
+		  return userId;
+	  }
 	  
+	  public String getGender(){
+		  return gender;
+	  }
 	  public String getName(){
-		  return name;
+		  return realName;
+	  }
+	  public String getPhoneNumber(){
+		  return phoneNumber;
 	  }
 	  
-	  public String getBio(){
-		  return bio;
+	  public String getProfileImg() {
+			return profileImg;
 	  }
 	  
-	  public String getFirstName(){
-		  return firstName;
+	  public String getClassNum(){
+		  return classNum;
 	  }
+	  public String getEmail(){
+		  return email;
+	  }
+	  
+	  
+	  
 	}
 	
 	public static class Apps extends GenericJson {

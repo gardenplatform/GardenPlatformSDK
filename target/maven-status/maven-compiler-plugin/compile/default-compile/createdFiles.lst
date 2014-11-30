@@ -3,7 +3,6 @@ swssm/garden/sdk/TokenRequest$1.class
 swssm/garden/sdk/AuthorizationCodeResponseUrl.class
 swssm/garden/sdk/TokenResponse.class
 swssm/garden/sdk/TokenErrorResponse.class
-swssm/garden/sdk/RefreshTokenRequest.class
 swssm/garden/sdk/AuthorizationCodeRequestUrl.class
 swssm/garden/sdk/TokenResponseException.class
 swssm/garden/sdk/AuthorizationCodeTokenRequest.class
