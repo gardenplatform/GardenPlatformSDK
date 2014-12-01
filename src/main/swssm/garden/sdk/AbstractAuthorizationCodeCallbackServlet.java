@@ -46,7 +46,8 @@ public abstract class AbstractAuthorizationCodeCallbackServlet extends HttpServl
 				TokenResponse response = flow.newTokenRequest(code).setRedirectUri(redirectUri).execute();
 				HttpSession session = req.getSession();
 				session.setAttribute("access_token", response.getAccessToken());
-				session.setMaxInactiveInterval(300000000);
+				session.setMaxInactiveInterval(3000000);
+				System.out.println(session.getAttribute("access_token"));
 				onSuccess(req, resp, response);
 			} finally {
 				lock.unlock();
@@ -62,9 +63,8 @@ public abstract class AbstractAuthorizationCodeCallbackServlet extends HttpServl
 
 	protected void onSuccess(HttpServletRequest req, HttpServletResponse resp,	TokenResponse tokenResponse) throws ServletException, IOException {	}
 	protected void onError(HttpServletRequest req, HttpServletResponse resp, AuthorizationCodeResponseUrl errorResponse) throws ServletException, IOException {	}
-	
 	protected void redirectAfterSuccessAuth(HttpServletRequest req, HttpServletResponse resp, String url) throws ServletException, IOException {
-		
+		System.out.println("redirect success");
 		PrintWriter out = resp.getWriter();
 	    out.println("<html><body>");
 	    out.println("<script type=\"text/javascript\">");

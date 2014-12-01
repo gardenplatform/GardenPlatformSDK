@@ -30,7 +30,6 @@ public abstract class AbstractAuthorizationCodeServlet extends HttpServlet{
 	    	flow = initializeFlow();
 	      	HttpSession session = req.getSession();
 			String accessToken = (String)session.getAttribute("access_token");
-			System.out.println("session tests : " + accessToken);
 			
 	      // Authorization Flow로 Redirect
 	      AuthorizationCodeRequestUrl authorizationUrl = flow.newAuthorizationUrl();
@@ -41,9 +40,6 @@ public abstract class AbstractAuthorizationCodeServlet extends HttpServlet{
 	      lock.unlock();
 	    }
 	  }
-	  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		  System.out.println(request.getMethod());
-		}
 
 	  protected abstract AuthorizationCodeFlow initializeFlow() throws ServletException, IOException;
 

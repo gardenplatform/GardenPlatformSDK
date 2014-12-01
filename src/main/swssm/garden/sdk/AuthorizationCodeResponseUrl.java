@@ -27,8 +27,6 @@ public class AuthorizationCodeResponseUrl extends GenericUrl{
 	
 	public AuthorizationCodeResponseUrl(String encodedResponseUrl){
 		super(encodedResponseUrl);
-		System.out.println("code : "+code);
-		System.out.println("error : "+error);
 		Preconditions.checkArgument((code==null) != (error == null));
 	}
 	
