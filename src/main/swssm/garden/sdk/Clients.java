@@ -20,19 +20,46 @@ import com.google.api.client.util.Key;
 
 import org.json.*;
 import org.json.simple.JSONObject;
-
+/**
+ * Access Token을 이용하여 API를 호출하기 위한 클래스 
+ * @author Garden
+ *
+ */
 public class Clients {
-	private final JsonFactory jsonFactory;	
+	/**
+	 * json 파싱을 위한 jsonFactory
+	 */
+	private final JsonFactory jsonFactory;
+	/**
+	 * API 호출을 위한 access token 
+	 */
 	private String accessToken;
+	/**
+	 * API를 호출할 때 Authorization의 헤더 
+	 */
 	private  String HEADER_PREFIX = "Bearer";
+	/**
+	 * Http Transport
+	 */
 	private HttpTransport transport = new NetHttpTransport();
+	/**
+	 * Http Request Initializer
+	 */
 	private HttpRequestInitializer requestInitializer;
+	/**
+	 * Http Request Factory
+	 */
 	private HttpRequestFactory requestFactory;
-	private HttpHeaders headers = new HttpHeaders();
+	/**
+	 * Http Request
+	 */
 	private HttpRequest request;
 	
 	 
-	
+	/**
+	 * 
+	 * @param accessToken
+	 */
 	public Clients(String accessToken) {
 		this.accessToken= accessToken;
 		this.jsonFactory =new JacksonFactory();
@@ -53,10 +80,14 @@ public class Clients {
 			          }
 		        });
 		
-		headers.setAuthorization(HEADER_PREFIX + accessToken);
+//		headers.setAuthorization(HEADER_PREFIX + accessToken);
 		
 	}
-	
+	/**
+	 * Access Token을 토큰 서버에 Request 보내어 사용자의 프로필을 불러옴. 
+	 * @return
+	 * @throws IOException
+	 */
 	public Profile getProfiles() throws IOException{
 		request = requestFactory.buildGetRequest(new GenericUrl("http://211.189.127.73:8000/api/v1/me?format=json"));
 		request.setParser(new JsonObjectParser(new JacksonFactory()));
@@ -65,7 +96,11 @@ public class Clients {
 		Profile  profile = response.parseAs(Profile.class);
 		return profile;
 	}
-	
+	/**
+	 * Access Token을 토큰 서버에 Request 보내어 사용자의 앱 목록을 불러옴. 
+	 * @return
+	 * @throws IOException
+	 */
 	public List<Apps> getAppList() throws IOException{
 		Profile user = getProfiles();
 		request = requestFactory.buildGetRequest(new GenericUrl("http://211.189.127.73:8000/api/v1/users/"+user.getUserId()+"/apps?format=json"));
@@ -76,6 +111,11 @@ public class Clients {
 		return appList.getAppList();
 	}
 	
+	/**
+	 * Access Token을 토큰 서버에 Request 보내어 사용자의 프로젝트 목록을 불러옴. 
+	 * @return
+	 * @throws IOException
+	 */
 	public List<Apps> getProjectList() throws IOException{
 		Profile user = getProfiles();
 		request = requestFactory.buildGetRequest(new GenericUrl("http://211.189.127.73:8000/api/v1/users/"+user.getUserId()+"/projects?format=json"));
@@ -86,9 +126,13 @@ public class Clients {
 		return prjList.getAppList();
 	}
 
+	/**
+	 * 프로필을 파싱하기 위한 Json Model
+	 * @author Garden
+	 *
+	 */
 	public static class Profile extends GenericJson {
 		
-		  /** Profile id */
 		  @Key("username")
 		  private String userId;
 		  @Key
@@ -130,7 +174,11 @@ public class Clients {
 		  }
 	  
 	}
-	
+	/**
+	 * 프로젝트 리스트를 파싱하기 위한 Json Model
+	 * @author Garden
+	 *
+	 */
 	public static class ProjectList {
 		  @Key
 		  private List<Apps> projects;
@@ -138,7 +186,11 @@ public class Clients {
 		    return projects;
 		  }
 	}
-	
+	/**
+	 * 앱 리스트를 파싱하기 위한 Json Model
+	 * @author Garden
+	 *
+	 */
 	public static class AppList {
 		  @Key
 		  private List<Apps> apps;
@@ -146,7 +198,11 @@ public class Clients {
 		    return apps;
 		  }
 	}
-	
+	/**
+	 * 앱, 프로젝트의 상세 정보 파싱하기 위한 Json Model
+	 * @author Garden
+	 *
+	 */
 	public static class Apps extends GenericJson {
 
 		  @Key("client_name")

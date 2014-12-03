@@ -61,8 +61,7 @@ public class TokenRequest extends GenericData {
      * @param tokenServerUrl
      * @param grantType
      */
-    public TokenRequest(HttpTransport transport, JsonFactory jsonFactory, GenericUrl tokenServerUrl,
-    	      String grantType) {
+    public TokenRequest(HttpTransport transport, JsonFactory jsonFactory, GenericUrl tokenServerUrl, String grantType) {
     	    this.transport = Preconditions.checkNotNull(transport);
     	    this.jsonFactory = Preconditions.checkNotNull(jsonFactory);
     	    setTokenServerUrl(tokenServerUrl);

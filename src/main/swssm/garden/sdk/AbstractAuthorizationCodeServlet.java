@@ -14,13 +14,21 @@ import javax.servlet.http.HttpSession;
 import swssm.garden.sdk.AuthorizationCodeFlow;
 import swssm.garden.sdk.AuthorizationCodeRequestUrl;
 
+/**
+ * Authorization Code를 얻기 위한 서블릿 클래스 
+ * @author Garden
+ *
+ */
 public abstract class AbstractAuthorizationCodeServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-
+	
 	  private final Lock lock = new ReentrantLock();
-
+	  
 	  private AuthorizationCodeFlow flow;
 	  
+	  /**
+	   * AuthorizationCode를 얻기 위한 Request Url을 만듦. 
+	   */
 	  @Override
 	  protected void service(HttpServletRequest req, HttpServletResponse resp)
 	      throws IOException, ServletException {
@@ -40,12 +48,30 @@ public abstract class AbstractAuthorizationCodeServlet extends HttpServlet{
 	      lock.unlock();
 	    }
 	  }
-
+	  /**
+	   * Oauth를 위한 파라미터 초기화 
+	   * @return flow
+	   * @throws ServletException
+	   * @throws IOException
+	   */
 	  protected abstract AuthorizationCodeFlow initializeFlow() throws ServletException, IOException;
 
-	  protected abstract String getRedirectUri(HttpServletRequest req)
-	      throws ServletException, IOException;
+	  /**
+	   * redirectUri를 리턴 
+	   * @param req
+	   * @throws ServletException
+	   * @throws IOException
+	   */
+	  protected abstract String getRedirectUri(HttpServletRequest req)  throws ServletException, IOException;
 
+	  /**
+	   * AuthorizationCode를 얻기 위한 Url을 새창으로 Redirect하기 위한 클래스 
+	   * @param req
+	   * @param resp
+	   * @param authorizationUrl
+	   * @throws ServletException
+	   * @throws IOException
+	   */
 	  protected void onAuthorization(HttpServletRequest req, HttpServletResponse resp,
 	      AuthorizationCodeRequestUrl authorizationUrl) throws ServletException, IOException {
 	    PrintWriter out = resp.getWriter();

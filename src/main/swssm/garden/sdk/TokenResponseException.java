@@ -23,20 +23,36 @@ import com.google.api.client.util.StringUtils;
 public class TokenResponseException extends HttpResponseException{
 
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Token error response의 디테일 
+	 */
 	private final transient TokenErrorResponse details;
 	
+	/**
+	 * 
+	 * @param builder
+	 * @param details
+	 */
 	protected TokenResponseException(Builder builder, TokenErrorResponse details) {
 		super(builder);
 		this.details = details;
 	}
 
-	// token error response의 detail을 return
+	/**
+	 * Token error response의 detail을 return
+	 * @return details
+	 */
 	public final TokenErrorResponse getDetails(){
 		return details;
 	}
 
 	
-	// JSON error response. TokenErrorResponse에 의해 파싱 되어 getDetails()를 이용하면 볼 수 있음.
+	/**
+	 * JSON error response. TokenErrorResponse에 의해 파싱 되어 getDetails()를 이용하면 볼 수 있음.
+	 * @param jsonFactory
+	 * @param response
+	 * @return 
+	 */
 	public static TokenResponseException from (JsonFactory jsonFactory, HttpResponse response){
 		HttpResponseException.Builder builder = new HttpResponseException.Builder(
 				response.getStatusCode(), response.getStatusMessage(), response.getHeaders());

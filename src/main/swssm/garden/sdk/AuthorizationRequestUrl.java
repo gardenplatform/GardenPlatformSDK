@@ -44,7 +44,13 @@ public class AuthorizationRequestUrl extends GenericUrl{
 	@Key
 	private String state;
 	
-	
+	/**
+	 * 
+	 * @param authorizationServerEncodedUrl
+	 * @param clientId
+	 * @param responseTypes
+	 * @param approvalPrompt
+	 */
 	 public AuthorizationRequestUrl(
 		      String authorizationServerEncodedUrl, String clientId, Collection<String> responseTypes, String approvalPrompt) {
 		    super(authorizationServerEncodedUrl);
@@ -54,56 +60,99 @@ public class AuthorizationRequestUrl extends GenericUrl{
 		    setApprovalPrompt(approvalPrompt);
 	}
 	 
-	 
+	 /**
+	  * response type을 리턴 
+	  * @return responseTypes
+	  */
 	 public final String getResponseTypes(){
 		 return responseTypes;
 	 }
 	 
+	 /**
+	  * response type을 셋팅 
+	  * @param responseTypes
+	  * @return responseTypes
+	  */
 	 public AuthorizationRequestUrl setResponseTypes(Collection<String> responseTypes){
 		 this.responseTypes = Joiner.on(' ').join(responseTypes);
 		 return this;
 	 }
 	 
+	 /**
+	  * redirectUri를 리턴 
+	  * @return redirectUri
+	  */
 	 public final String getRedirectUri(){
 		 return redirectUri;
 	 }
-	 
+	 /**
+	  * redirectUri를 셋팅 
+	  * @return redirectUri
+	  */
 	 public AuthorizationRequestUrl setRedirectUri(String redirectUri){
 		 this.redirectUri =redirectUri;
 		 return this;
 	 }
-	 
+	 /**
+	  * scope를 리턴 
+	  * @return scopes
+	  */
 	 public final String getScopes(){
 		 return scopes;
 	 }
-	 
+	 /**
+	  * scopes를 셋팅 
+	  * @param scopes
+	  * @return scopes
+	  */
 	 public AuthorizationRequestUrl setScopes(Collection<String> scopes){
 		 this.scopes = scopes == null || !scopes.iterator().hasNext() ? null : Joiner.on(' ').join(scopes);
 		 return this;
 	 }
-	 
+	 /**
+	  * client id를 리턴 
+	  * @return clientId
+	  */
 	 public final String getClientId(){
 		 return clientId;
 	 }
-	 
+	 /**
+	  * client id를 셋팅 
+	  * @param clientId
+	  * @return clientId
+	  */
 	 public AuthorizationRequestUrl setClientId(String clientId){
 		 this.clientId = Preconditions.checkNotNull(clientId);
 		 return this;
 	 }
-	 
+	 /**
+	  * state를 리턴 
+	  * @return state
+	  */
 	 public final String getState(){
 		 return state;
 	 }
-	 
+	 /**
+	  * state를 셋팅 
+	  * @param state
+	  * @return state
+	  */
 	 public AuthorizationRequestUrl setState(String state){
 		 this.state=state;
 		 return this;
 	 }
-	 
+	 /**
+	  * approval prompt를 리턴 
+	  * @return approvalPrompt
+	  */
 	 public final String getApprovalPrompt(){
 		 return approvalPrompt;
 	 }
-	 
+	 /**
+	  * approval prompt를 셋팅 
+	  * @param approvalPrompt
+	  * @return approvalPrompt
+	  */
 	 public AuthorizationRequestUrl setApprovalPrompt(String approvalPrompt){
 		 this.approvalPrompt=approvalPrompt;
 		 return this;

@@ -1,18 +1,13 @@
 package swssm.garden.sdk;
 
-/**
- * 
- *  Authorization Code를 얻기 위한 Request URL을 만들어주는 클래스
- *  
- *  
- *  @author SW
- *  @version 1.0
- *  
- *  */
+
 import java.util.Collection;
 import java.util.Collections;
 
-
+/**
+ *  Authorization Code를 얻기 위한 Request URL을 만들어주는 클래스
+ *  @author Garden
+ *  */
 public class AuthorizationCodeRequestUrl extends AuthorizationRequestUrl{
 
 	@Override
@@ -55,7 +50,11 @@ public class AuthorizationCodeRequestUrl extends AuthorizationRequestUrl{
 	public AuthorizationCodeRequestUrl clone() {
 		return (AuthorizationCodeRequestUrl) super.clone();
 	}
-
+/**
+ * 
+ * @param authorizationServerEncodedUrl
+ * @param clientId
+ */
 	public AuthorizationCodeRequestUrl(String authorizationServerEncodedUrl,
 			String clientId) {
 		super(authorizationServerEncodedUrl, clientId,Collections.singleton("code"), "force");
